@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Path - Language Academy of Yazd University</title>
+  <style>
+    :root {
+      --primary: #1a5276;
+      --secondary: #2e86c1;
+      --accent: #f39c12;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --success: #27ae60;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    header {
+      background-color: var(--primary);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .logo img {
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      padding: 5px;
+    }
+    
+    .logo h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      background-color: var(--secondary);
+    }
+    
+    nav a.active {
+      background-color: var(--accent);
+      color: var(--dark);
+    }
+    
+    .mobile-menu {
+      display: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .page-header {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/seed/ourpathheader/1200/300');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+    }
+    
+    .page-header h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .breadcrumbs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .breadcrumbs a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    .breadcrumbs span {
+      color: #ddd;
+    }
+    
+    .our-path {
+      padding: 5rem 0;
+    }
+    
+    .director-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px var(--shadow);
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+    
+    .director-image {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .director-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .director-info {
+      padding: 2rem;
+    }
+    
+    .director-info h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .director-title {
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: var(--secondary);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      margin-bottom: 3rem;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border: 4px solid var(--accent);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .left {
+      left: 0;
+    }
+    
+    .right {
+      left: 50%;
+    }
+    
+    .left::after {
+      right: -12px;
+    }
+    
+    .right::after {
+      left: -12px;
+    }
+    
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+    
+    .timeline-content h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-content .date {
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .section-title p {
+      color: var(--dark);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-column h3 {
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-column a {
+      color: #bbb;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-column a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #444;
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-menu {
+        display: block;
+      }
+      
+      nav {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--primary);
+        transition: 0.3s;
+      }
+      
+      nav.active {
+        left: 0;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        padding: 2rem;
+      }
+      
+      .director-card {
+        grid-template-columns: 1fr;
+      }
+      
+      .director-image {
+        height: 300px;
+      }
+      
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item::after {
+        left: 18px;
+      }
+      
+      .left::after,
+      .right::after {
+        left: 18px;
+      }
+      
+      .right {
+        left: 0%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <!-- Updated Logo with unique seed -->
+          <img src="https://picsum.photos/seed/logoPath/100/100" alt="Language Academy Logo">
+          <h1>Language Academy of Yazd University</h1>
+        </a>
+        
+        <div class="mobile-menu">☰</div>
+        
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-path.html" class="active">Our Path</a></li>
+            <li><a href="index.html#courses">Courses</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h2>Our Path</h2>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Our Path</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Path Section -->
+  <section class="our-path">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Journey</h2>
+        <p>Discover the history and leadership that has shaped the Language Academy of Yazd University into the excellent institution it is today.</p>
+      </div>
+      
+      <h3 style="color: var(--primary); text-align: center; margin-bottom: 2rem;">Meet Our Leadership</h3>
+      
+      <!-- Current Director -->
+      <div class="director-card">
+        <div class="director-image">
+          <!-- Updated Current Director Image with unique seed -->
+          <img src="https://picsum.photos/seed/rostamFarahi/400/500" alt="Dr. Rostam Farahi">
+        </div>
+        <div class="director-info">
+          <h3>Dr. Rostam Farahi</h3>
+          <div class="director-title">Current Director (Since 2022)</div>
+          <p>Dr. Rostam Farahi brings over 20 years of expertise in language education and administration to the Language Academy. With a Ph.D. in Applied Linguistics from the University of Tehran and extensive international experience, Dr. Farahi has implemented innovative teaching methodologies and expanded our course offerings.</p>
+          <p>Under his leadership, the Academy has established new partnerships with international language institutes and universities, providing students with enhanced learning opportunities and exchange programs.</p>
+          <p>Dr. Farahi's vision is to position the Language Academy of Yazd University as a leading center for language education in the Middle East while maintaining our commitment to cultural understanding and academic excellence.</p>
+        </div>
+      </div>
+      
+      <!-- Former Director -->
+      <div class="director-card">
+        <div class="director-image">
+          <!-- Updated Former Director Image with unique seed -->
+          <img src="https://s3.eseminar.tv/upload/teacher/1623136486_96.jpg" alt="Dr. Mehraban Hamavandy">
+        </div>
+        <div class="director-info">
+          <h3>Dr. Mehraban Hamavandy</h3>
+          <div class="director-title">Former Director (2005-2022)</div>
+          <p>Dr. Mehraban Hamavandy was the founding director of the Language Academy of Yazd University. With a Ph.D. in Linguistics from the University of Cambridge, Dr. Hamavandy established the Academy with a vision of providing world-class language education to students in Yazd.</p>
+          <p>During his 17-year tenure, Dr. Hamavandy developed the comprehensive curriculum that serves as the foundation of our programs today. His dedication to quality education and cultural exchange shaped the Academy's reputation for excellence.</p>
+          <p>Under his guidance, the Academy grew from a small department offering English courses to a comprehensive language institute teaching multiple languages at all proficiency levels. His legacy continues to inspire our commitment to educational innovation and cultural understanding.</p>
+        </div>
+      </div>
+      
+      <h3 style="color: var(--primary); text-align: center; margin: 4rem 0 2rem;">Our Historical Timeline</h3>
+      
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Foundation</h3>
+            <span class="date">2005</span>
+            <p>The Language Academy of Yazd University was established under the leadership of Dr. Mehraban Hamavandy, offering basic English language courses to university students.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Expansion of Course Offerings</h3>
+            <span class="date">2008</span>
+            <p>Added French and German language programs to meet growing demand for European language instruction. The Academy recruited native speakers as instructors to ensure authentic language learning.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>New Facility</h3>
+            <span class="date">2012</span>
+            <p>Moved to our current purpose-built facility on the Yazd University campus, featuring modern classrooms, a language lab, and a multimedia library.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>International Certification</h3>
+            <span class="date">2015</span>
+            <p>Became an official examination center for international language certifications including TOEFL, IELTS, TestDaF, and DELF, allowing students to obtain globally recognized qualifications.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Introduction of Arabic and Spanish</h3>
+            <span class="date">2018</span>
+            <p>Further expanded our language offerings to include Arabic and Spanish courses, bringing our total to six languages taught at various proficiency levels.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Leadership Transition</h3>
+            <span class="date">2022</span>
+            <p>Dr. Rostam Farahi appointed as the new director following Dr. Hamavandy's retirement, bringing new vision and international connections to the Academy.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Digital Transformation</h3>
+            <span class="date">2023</span>
+            <p>Implemented state-of-the-art language learning technology and hybrid learning options, combining traditional classroom instruction with online resources and virtual exchange programs.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>International Partnerships</h3>
+            <span class="date">2024</span>
+            <p>Established formal partnerships with language institutes in France, Germany, and the UK, creating exchange opportunities for both students and faculty.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Today and Beyond</h3>
+            <span class="date">2025</span>
+            <p>Continuing to innovate and expand our programs while maintaining our commitment to excellence in language education and cultural understanding.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Language Academy</h3>
+          <p>The Language Academy of Yazd University is committed to excellence in language education and cultural exchange.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-path.html">Our Path</a></li>
+            <li><a href="index.html#courses">Courses</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Languages</h3>
+          <ul>
+            <li><a href="#">English</a></li>
+            <li><a href="#">French</a></li>
+            <li><a href="#">German</a></li>
+            <li><a href="#">Spanish</a></li>
+            <li><a href="#">Arabic</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Language Academy of Yazd University. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const nav = document.querySelector('nav');
+    
+    mobileMenu.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+    
+    // Hide menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('nav') && !e.target.closest('.mobile-menu')) {
+        nav.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
